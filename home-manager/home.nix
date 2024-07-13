@@ -8,7 +8,6 @@
 			htop
 			neofetch
 			spotify
-			steam
 			telegram-desktop
 			discord
 			git
@@ -21,8 +20,8 @@
 	programs.bash = {
 		enable = true;
 		shellAliases = {
-			rebuild = "sudo nixos-rebuild switch --flake ~/nix/";
-			sysconfig = "sudo nano /etc/nixos/configuration.nix";
+			rebuild = "sudo nixos-rebuild switch --flake ~/nix/flake.nix";
+			sysconfig = "nano ~/nix/nixos/configuration.nix";
 			sayhi = "echo hii";
 		};
 	};

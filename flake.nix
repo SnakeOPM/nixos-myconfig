@@ -36,6 +36,7 @@
       };
       modules = [
         ./nixos/configuration.nix
+	./nixos/modules/steam
       ];
     };
 
