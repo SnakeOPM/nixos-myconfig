@@ -12,8 +12,13 @@
 			discord
 			git
 			vscode
-			php
+			php83
 			go
+			autorandr
+			php83Packages.composer
+			phpunit
+			temurin-bin-21
+			wine
 		];
 	};
 
@@ -21,7 +26,9 @@
 		enable = true;
 		shellAliases = {
 			rebuild = "sudo nixos-rebuild switch --flake ~/nix/flake.nix";
-			sysconfig = "nano ~/nix/nixos/configuration.nix";
+			homerebuild = "home-manager switch --flake ~/nix/flake.nix";
+			sysconf = "nano ~/nix/nixos/configuration.nix";
+			homeconf = "nano ~/nix/home-manager/home.nix";
 			sayhi = "echo hii";
 		};
 	};
