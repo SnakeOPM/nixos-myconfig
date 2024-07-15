@@ -5,6 +5,7 @@
 		homeDirectory = "/home/jalemi";
 		stateVersion = "24.05";
 		packages = with pkgs; [
+			nekoray
 			htop
 			neofetch
 			spotify
@@ -17,7 +18,8 @@
 			autorandr
 			php83Packages.composer
 			phpunit
-			temurin-bin-21
+			temurin-bin-17
+			appimage-run
 			wine
 		];
 	};

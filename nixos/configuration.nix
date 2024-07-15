@@ -132,6 +132,9 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  #Enable appimages
+  programs.appimage.binfmt = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
