@@ -25,8 +25,9 @@
     };
 
   fileSystems."/mnt/bluegum" =
-    { device = "/dev/sda2";
-     fsType = "ntfs3";
+    { device = "/dev/disk/by-uuid/306A563A6A55FD52";
+     fsType = "ntfs-3g";
+     options = [ "rw" "uid=1000"];
     };
 
   swapDevices = [ ];
