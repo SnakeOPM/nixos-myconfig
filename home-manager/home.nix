@@ -5,6 +5,7 @@
 		homeDirectory = "/home/jalemi";
 		stateVersion = "24.05";
 		packages = with pkgs; [
+			openvpn
 			nekoray
 			htop
 			neofetch
@@ -14,6 +15,7 @@
 			git
 			vscode
 			php83
+			pkgs.php83Extensions.xdebug
 			go
 			autorandr
 			php83Packages.composer

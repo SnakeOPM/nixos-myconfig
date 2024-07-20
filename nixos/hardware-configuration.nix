@@ -24,6 +24,11 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
+  fileSystems."/mnt/bluegum" =
+    { device = "/dev/sda2";
+     fsType = "ntfs3";
+    };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
