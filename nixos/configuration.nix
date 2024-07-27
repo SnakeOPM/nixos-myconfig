@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 
 {
   imports =
@@ -21,6 +21,11 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  #default shell
+  programs.zsh.enable = true;
+  programs.zsh.autosuggestions.enable = true;
+  users.defaultUserShell = pkgs.zsh;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -143,16 +148,17 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    home-manager
-    docker
-    flatpak
-    zsh
-    ntfs3g
+    pkgs.wget
+    pkgs.home-manager
+    pkgs.docker
+    pkgs.flatpak
+    pkgs.zsh
+    pkgs.oh-my-zsh
+    pkgs.ntfs3g
+    pkgs-stable.thefuck
   ];
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
