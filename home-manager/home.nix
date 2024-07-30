@@ -4,27 +4,33 @@
 		username = "jalemi";
 		homeDirectory = "/home/jalemi";
 		stateVersion = "24.05";
-		packages = with pkgs; [
+		packages = builtins.attrValues {
+			inherit (pkgs)
+			krita
 			unrar
 			openvpn
 			nekoray
 			htop
 			neofetch
 			spotify
+			spicetify-cli
 			telegram-desktop
-			discord
+			vesktop
 			git
 			vscode
 			php83
-			pkgs.php83Extensions.xdebug
 			go
 			autorandr
-			php83Packages.composer
 			phpunit
 			temurin-bin-17
+			firefox-wayland
 			appimage-run
-			wine
-		];
+			wine;
+			inherit (pkgs.php83Extensions)
+			xdebug;
+			inherit (pkgs.php83Packages)
+			composer;
+		};
 	};
 	programs.zsh = {
 		enable = true;
