@@ -14,6 +14,7 @@
       ./modules/nvidia/default.nix
       ./modules/xdg/default.nix
       ./modules/steam/default.nix
+      ./modules/fonts/default.nix
     ];
 
   # Bootloader.
@@ -61,14 +62,12 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "us,ru";
     xkb.options = "grp:alt_shift_toggle";
     xkb.variant = "";
   };
-
 
 
   # Load nvidia driver for Xorg and Wayland
@@ -115,11 +114,15 @@
     dunst
     kitty
     swww
+    slurp
     rofi-wayland;
 };
 
-  environment.sessionVariables = {
+  environment.sessionVariables = rec {
     NIXOS_OZONE_WL = "1";
+    LIBVA_DRIVER_NAME = "nvidia";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     MOZ_ENABLE_WAYLAND = "0";
 };
   # Some programs need SUID wrappers, can be configured further or are
