@@ -20,7 +20,7 @@
 			telegram-desktop
 			vesktop
 			git
-			vscode
+			vscodium
 			php83
 			go
 			autorandr

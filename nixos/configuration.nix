@@ -2,11 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-stable, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-stable, pkgs-unstable, ... }@inputs:
 
 {
+  nixpkgs.config.allowUnfree = true;
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
       ./modules/docker/default.nix
       ./modules/audio/default.nix
@@ -97,9 +98,6 @@
   #Enable appimages
   programs.appimage.binfmt = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   #Turn on flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # List packages installed in system profile. To search, run:
@@ -107,6 +105,8 @@
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
     wget
+    slurp
+    hyprshot
     home-manager;
   inherit (pkgs-stable) 
     thefuck
@@ -114,7 +114,6 @@
     dunst
     kitty
     swww
-    slurp
     rofi-wayland;
 };
 

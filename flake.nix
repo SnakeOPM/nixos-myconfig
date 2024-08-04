@@ -6,6 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-gaming.url = "github:fufexan/nix-gaming";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -19,7 +20,7 @@
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixpkgs-unstable, ... }@inputs:
 
     let
       system = "x86_64-linux";
@@ -30,9 +31,14 @@
       specialArgs = {
         pkgs-stable = import nixpkgs-stable {
           inherit system;
-          config.allowUnfree = true;
+          nixpkgs.config.allowUnfree = true;
         };
-        inherit inputs system;
+        pkgs-unstable = import nixpkgs-unstable {
+          inherit system;
+          nixpkgs.config.allowUnfree = true;
+        };
+        inherit inputs
+         system;
       };
       modules = [
         ./nixos/configuration.nix
