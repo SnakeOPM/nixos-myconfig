@@ -97,6 +97,13 @@
 
   #Enable appimages
   programs.appimage.binfmt = true;
+ 
+  #enable pcsd and gnupg
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+  };
 
   #Turn on flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -107,8 +114,7 @@
     wget
     slurp
     hyprshot
-    home-manager;
-  inherit (pkgs-stable) 
+    home-manager
     thefuck
     waybar
     dunst

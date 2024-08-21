@@ -1,5 +1,5 @@
 {
-    home.file."~/.config/hypr/hyprland.conf".text = ''                                   
+  home.file."~/.config/hypr/hyprland.conf".text = ''                                   
     ################
 ### MONITORS ###
 ################
@@ -244,14 +244,14 @@ windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.
 exec-once=bash ~/.config/hypr/start.sh
   '';
 
-home.file."~/.config/hypr/start.sh".text = ''
-   #!/usr/bin/env bash
+  home.file."~/.config/hypr/start.sh".text = ''
+    #!/usr/bin/env bash
 
-   # wallpaper deamon
-   swww init &
-   swww img ~/Wallpappers/gruvbox-mountain-village.png &
+    # wallpaper deamon
+    swww init &
+    swww img ~/Wallpappers/gruvbox-mountain-village.png &
 
-    waybar &
-    dunst
-   '';
+     waybar &
+     dunst
+  '';
 }

@@ -24,30 +24,32 @@
 
     let
       system = "x86_64-linux";
-    in {
-
-    # nixos - system hostname
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        pkgs-stable = import nixpkgs-stable {
+      addUnstablePackages = final: _prev: {
+        unstable = import inputs.nixpkgs-unstable {
           inherit system;
-          nixpkgs.config.allowUnfree = true;
+          nixpgs.config.allowUnfree = true;
         };
-        pkgs-unstable = import nixpkgs-unstable {
-          inherit system;
-          nixpkgs.config.allowUnfree = true;
-        };
-        inherit inputs
-         system;
       };
-      modules = [
-        ./nixos/configuration.nix
-      ];
-    };
+    in
+    {
+      nixpkgs.overlays = [ addUnstablePackages ];
+      # nixos - system hostname
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs
+            system;
+        };
+        modules = [
+          ./nixos/configuration.nix
+        ];
+      };
 
-    homeConfigurations.jalemi = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
-      modules = [ ./home-manager/home.nix ];
+      homeConfigurations.jalemi = home-manager.lib.homeManagerConfiguration {
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = [ addUnstablePackages ];
+        };
+        modules = [ ./home-manager/home.nix ];
+      };
     };
-  };
 }

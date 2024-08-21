@@ -1,10 +1,10 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   fonts.packages = builtins.attrValues {
-  inherit (pkgs)
-  feather;
-  nerdfonts = pkgs.nerdfonts.override {
-    fonts = ["SpaceMono"];
+    inherit (pkgs)
+      feather;
+    nerdfonts = pkgs.nerdfonts.override {
+      fonts = [ "SpaceMono" ];
     };
   };
 }

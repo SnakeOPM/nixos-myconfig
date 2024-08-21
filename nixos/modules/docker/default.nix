@@ -1,4 +1,5 @@
-_: { virtualisation.docker = {
+_: {
+  virtualisation.docker = {
     enable = true;
     enableNvidia = true;
     enableOnBoot = true;
